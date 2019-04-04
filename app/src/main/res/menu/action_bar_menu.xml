@@ -1,0 +1,59 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.sartainstudios.contacts.ContactsView">
+
+    <group
+        android:id="@+id/group_order"
+        android:checkableBehavior="none">
+        <!-- text color group's items -->
+        <item
+            android:checkable="false"
+            android:enabled="false"
+            android:title="@string/order_by" />
+        <item
+            android:id="@+id/menu_order_name"
+            android:title="@string/order_name"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/menu_order_distance"
+            android:title="@string/order_distance"
+            app:showAsAction="never" />
+    </group>
+
+    <group
+        android:id="@+id/group_view"
+        android:checkableBehavior="none">
+        <item
+            android:checkable="false"
+            android:enabled="false"
+            android:title="@string/view_as" />
+        <item
+            android:id="@+id/menu_view_list"
+            android:title="@string/view_list"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/menu_view_map"
+            android:title="@string/view_map"
+            app:showAsAction="never" />
+    </group>
+
+    <group
+        android:id="@+id/menu_group_import"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/menu_import"
+            android:title="@string/import_friend"
+            app:showAsAction="never" />
+    </group>
+
+    <item
+        android:id="@+id/menu_add_friend"
+        android:icon="@mipmap/ic_add_contact"
+        android:title="@string/add_friend"
+        app:showAsAction="ifRoom" />
+
+
+
+</menu>
