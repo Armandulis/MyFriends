@@ -1,12 +1,17 @@
 package com.example.myfriends;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Calendar;
 
 public class AddFriend extends AppCompatActivity {
 
@@ -14,7 +19,7 @@ public class AddFriend extends AppCompatActivity {
     EditText textAddress;
     EditText textPhoneNumber;
     EditText textMail;
-    EditText textBithday;
+    TextView textBithday;
     EditText textWebsite;
     ImageView imgPicture;
 
@@ -23,6 +28,8 @@ public class AddFriend extends AppCompatActivity {
 
     private ISQLiteFriends dataAccess;
 
+    private DatePickerDialog.OnDateSetListener mDateSetPicker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,12 +37,22 @@ public class AddFriend extends AppCompatActivity {
 
         dataAccess = DataAccessFactory.getInstance(this);
 
-        textName = findViewById(R.id.editText_name_edit);
-        textAddress = findViewById(R.id.editText_address_edit);
-        textPhoneNumber = findViewById(R.id.editText_phone_edit);
-        textMail = findViewById(R.id.editText_mail_edit);
-        textBithday = findViewById(R.id.editText_birthday_edit);
-        textWebsite = findViewById(R.id.editText_website_edit);
+        textName = findViewById(R.id.editText_name_add);
+        textAddress = findViewById(R.id.editText_address_add);
+        textPhoneNumber = findViewById(R.id.editText_phone_add);
+        textMail = findViewById(R.id.editText_mail_add);
+        textBithday = findViewById(R.id.textview_birthday_add);
+        textWebsite = findViewById(R.id.editText_website_add);
+
+        mDateSetPicker = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month++;
+                String dateOfBirth =year +"/"+month+"/"+dayOfMonth;
+                textBithday.setText(dateOfBirth);
+
+            }
+        };
     }
 
     public void locationButton(View view){
@@ -67,7 +84,7 @@ public class AddFriend extends AppCompatActivity {
             textPhoneNumber.setError( "Phone number is required!" );
         }else if(mail.equals("")){
             textMail.setError( "Mail is required!" );
-        }else if( birthday.equals("")){
+        }else if( birthday.equals("Birthday:")){
             textBithday.setError( "Birthday is required!" );
         }else if( website.equals("")){
             website = "Unknown";
@@ -94,4 +111,20 @@ public class AddFriend extends AppCompatActivity {
 
 
     }
+
+    public void setBirthdayAdd(View view) {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog dialog = new DatePickerDialog(
+                this,
+                android.R.style.Theme_DeviceDefault_Dialog_MinWidth,
+                mDateSetPicker,
+                year, month, day);
+        dialog.show();
+    }
+
+
 }

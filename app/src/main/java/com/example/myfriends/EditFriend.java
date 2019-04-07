@@ -2,11 +2,8 @@ package com.example.myfriends;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -53,17 +50,17 @@ public class EditFriend extends AppCompatActivity {
     }
 
     private void setUpInputs(){
-        textName =  findViewById(R.id.editText_name_edit);
+        textName =  findViewById(R.id.editText_name_add);
         textName.setText(friend.name);
-        textAddress =  findViewById(R.id.editText_address_edit);
+        textAddress =  findViewById(R.id.editText_address_add);
         if (!friend.address.equals("Unknown")) textAddress.setText(friend.address);
-        textPhoneNumber =  findViewById(R.id.editText_phone_edit);
+        textPhoneNumber =  findViewById(R.id.editText_phone_add);
         textPhoneNumber.setText(friend.phone);
-        textMail =  findViewById(R.id.editText_mail_edit);
+        textMail =  findViewById(R.id.editText_mail_add);
         if (!friend.mail.equals("Unknown")) textMail.setText(friend.mail);
         textBirthday =  findViewById(R.id.editText_birthday_edit);
         if (!friend.birthday.equals("Unknown")) textBirthday.setText(friend.birthday);
-        textWebsite = findViewById(R.id.editText_website_edit);
+        textWebsite = findViewById(R.id.editText_website_add);
         if (!friend.birthday.equals("Unknown")) textWebsite.setText(friend.website);
         //ImageView imagePicture = (ImageView) findViewById(R.id.imageview_picture);
         //imagePicture.setImage();

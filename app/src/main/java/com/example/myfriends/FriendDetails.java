@@ -2,6 +2,7 @@ package com.example.myfriends;
 
 import android.content.Intent;
 import android.media.Image;
+import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -79,6 +80,10 @@ public class FriendDetails extends AppCompatActivity {
     }
 
     public void openWebsiteBtn(View view) {
+        String url = friend.website;
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
     }
 
     public void openEditBtn(View view) {

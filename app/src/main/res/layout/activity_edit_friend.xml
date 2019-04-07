@@ -8,79 +8,94 @@
 
 
     <EditText
-        android:id="@+id/editText_name_edit"
-        android:layout_width="wrap_content"
+        android:id="@+id/editText_name_add"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/name"
         android:inputType="textPersonName"
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/floatingActionButton"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText_address_edit"
-        android:layout_width="wrap_content"
+        android:id="@+id/editText_address_add"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/address"
         android:inputType="textPersonName"
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/floatingActionButton2"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_name_edit" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_name_add" />
 
     <EditText
-        android:id="@+id/editText_phone_edit"
-        android:layout_width="wrap_content"
+        android:id="@+id/editText_phone_add"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/phone"
         android:inputType="phone"
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/floatingActionButton2"
+        app:layout_constraintHorizontal_bias="0.016"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_address_edit" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_address_add" />
 
     <EditText
-        android:id="@+id/editText_mail_edit"
-        android:layout_width="wrap_content"
+        android:id="@+id/editText_mail_add"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/mail"
         android:inputType="textEmailAddress"
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/floatingActionButton2"
+        app:layout_constraintHorizontal_bias="0.016"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_phone_edit" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_phone_add" />
 
     <TextView
         android:id="@+id/editText_birthday_edit"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/birthday"
         android:onClick="setBirthday"
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/floatingActionButton2"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_mail_edit" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_mail_add" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:clickable="true"
         android:onClick="takePictureButton"
-        app:layout_constraintStart_toEndOf="@+id/editText_name_edit"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_camera" />
 
@@ -88,24 +103,27 @@
         android:id="@+id/floatingActionButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:clickable="true"
         android:onClick="locationButton"
-        app:layout_constraintStart_toEndOf="@+id/editText_address_edit"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/floatingActionButton"
         app:srcCompat="@android:drawable/ic_dialog_map" />
 
     <EditText
-        android:id="@+id/editText_website_edit"
-        android:layout_width="wrap_content"
+        android:id="@+id/editText_website_add"
+        android:layout_width="0dp"
         android:layout_height="43dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/web"
         android:inputType="textPersonName"
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/floatingActionButton2"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_birthday_edit" />
 
@@ -120,10 +138,10 @@
         android:contentDescription="@string/picture_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.654"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_website_edit"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintTop_toBottomOf="@+id/editText_website_add"
+        app:layout_constraintVertical_bias="0.684"
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button

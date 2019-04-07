@@ -58,9 +58,10 @@ public class ListViewFriendsAdapter extends BaseAdapter {
 
         TextView textViewPhone = itemView.findViewById(R.id.textviewlist_phone);
         textViewPhone.setText(selectedFriend.phone);
-
+        ImageView birthdayImg = itemView.findViewById(R.id.image_for_birthday);
+        birthdayImg.setVisibility(View.INVISIBLE);
         if (!selectedFriend.birthday.equals("Unknown")){
-            ImageView birthdayImg = itemView.findViewById(R.id.image_for_birthday);
+
             String partsOfDate[] = selectedFriend.birthday.split("/");
             String birthdayMonth = partsOfDate[1];
             String birthdayDay = partsOfDate[2];
@@ -68,8 +69,7 @@ public class ListViewFriendsAdapter extends BaseAdapter {
             String currentDay = cal.get(Calendar.DAY_OF_MONTH) + "";
             String currentMonth = cal.get(Calendar.MONTH) + 1 +"";
 
-            if ( birthdayMonth.equals(currentMonth) && birthdayDay.equals(currentDay)) birthdayImg.setVisibility(View.VISIBLE); //SHOW the button
-            else birthdayImg.setVisibility(View.INVISIBLE);
+            if ( birthdayMonth.equals(currentMonth) && birthdayDay.equals(currentDay)){ birthdayImg.setVisibility(View.VISIBLE);} //SHOW the button
         }
 
         if (!selectedFriend.mail.equals("Unknown")){
