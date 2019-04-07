@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myfriends">
 
+    <!-- Permissions -->
 
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!--/ Permissions -->
 
     <application
         android:allowBackup="true"
@@ -10,11 +13,20 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        >
-        <activity android:name=".AddFriend"></activity>
-        <activity android:name=".FriendDetails" />
-        <activity android:name=".MainActivity"
+        android:theme="@style/AppTheme">
+        <activity android:name=".EditFriend"></activity>
+        <activity
+            android:name=".AddFriend"
+            android:label="@string/app_add"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".FriendDetails"
+            android:label="@string/app_details"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize"
+            android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

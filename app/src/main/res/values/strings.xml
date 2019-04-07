@@ -23,4 +23,10 @@
     <string name="add_friend">Add friend</string>
     <string name="import_friend">Import..</string>
 
+
+    // Actionbar labels
+    <string name="app_details">MyFriends - details</string>
+    <string name="app_edit">MyFriends - edit</string>
+    <string name="app_add">MyFriends - add</string>
+    <string name="app_map">MyFriends - map</string>
 </resources>

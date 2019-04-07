@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class FriendBE implements Serializable {
 
-    int id;
+    long id;
     String name;
     String address;
     String phone;
@@ -14,7 +14,7 @@ public class FriendBE implements Serializable {
     String website;
     String picture;
 
-    public FriendBE(int id,
+    public FriendBE(long id,
                     String name,
                     String address,
                     String phone,
