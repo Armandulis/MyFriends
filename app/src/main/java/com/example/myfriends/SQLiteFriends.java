@@ -18,9 +18,9 @@ public final class SQLiteFriends implements ISQLiteFriends {
     private static final String TABLE_NAME = "Friends";
 
     private SQLiteDatabase database;
-    private SQLiteStatement insertStmt;
+     private SQLiteStatement insertStmt;
 
-    public SQLiteFriends(Context context){
+    SQLiteFriends(Context context){
         OpenHelper openHelper = new OpenHelper(context);
         database = openHelper.getWritableDatabase();
     }
@@ -84,20 +84,22 @@ public final class SQLiteFriends implements ISQLiteFriends {
         Cursor cursor = database.query(TABLE_NAME, TABLE_COLUMN_NAMES,
                 null, null, null, null, "name");
 
-        while(cursor.moveToNext()){
-            friendsList.add(new FriendBE(
-                    cursor.getLong(0),
-                    cursor.getString(1),
-                    cursor.getString(2),
-                    cursor.getString(3),
-                    cursor.getString(4),
-                    cursor.getString(5),
-                    cursor.getString(6),
-                    cursor.getString(7)
-            ));
+
+            while(cursor.moveToNext()){
+                friendsList.add(new FriendBE(
+                        cursor.getLong(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getString(5),
+                        cursor.getString(6),
+                        cursor.getString(7)
+                ));
+            }
+          cursor.close();
 
 
-        }
         return friendsList;
     }
 

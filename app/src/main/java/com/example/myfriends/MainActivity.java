@@ -9,6 +9,7 @@ import android.os.Build;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -163,47 +164,48 @@ public class MainActivity extends AppCompatActivity {
             getContacts();
         }
     }
-    private void getContacts(){
+    private void getContacts() {
         ContentResolver resolver = this.getContentResolver();
 
-        Cursor cursor = resolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
+        Cursor contactCursor = resolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
 
-        while (cursor.moveToNext()){
-            FriendBE friend = new FriendBE(0,"Unknown", "Unknown", "Unknown", "Unknown","Unknown","Unknown", "Unknown");
-            String id = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
-            String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-            friend.name = name;
-            String picture = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.PHOTO_FILE_ID));
-            if (picture != null){
-                friend.picture = picture;
-            }
-
-
-            Cursor phoneCursor = resolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null ,
-                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?", new String[] { id }, null);
-
-
-            while (phoneCursor.moveToNext()){
-               String phoneNumber =  phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                friend.phone = phoneNumber;
-            }
-            phoneCursor.close();
-
-            Cursor emailCursor = resolver.query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, null ,
-                    ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = ?", new String[] { id }, null);
-
-            while (emailCursor.moveToNext()){
-                String email =  emailCursor.getString(emailCursor.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA));
-                if (email != null){
-                    friend.mail = email;
+        if (contactCursor != null) {
+            while (contactCursor.moveToNext()) {
+                FriendBE friend = new FriendBE(0, "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown", "Unknown");
+                String id = contactCursor.getString(contactCursor.getColumnIndex(ContactsContract.Contacts._ID));
+                friend.name = contactCursor.getString(contactCursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                String picture = contactCursor.getString(contactCursor.getColumnIndex(ContactsContract.Contacts.PHOTO_FILE_ID));
+                if (picture != null) {
+                    friend.picture = picture;
                 }
+
+                Cursor phoneCursor = resolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
+                        ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?", new String[]{id}, null);
+
+                if (phoneCursor != null) {
+                    while (phoneCursor.moveToNext()) {
+                        friend.phone = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                    }
+                    phoneCursor.close();
+                }
+
+                Cursor emailCursor = resolver.query(ContactsContract.CommonDataKinds.Email.CONTENT_URI, null,
+                        ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = ?", new String[]{id}, null);
+
+                if (emailCursor != null) {
+                    while (emailCursor.moveToNext()) {
+                        String email = emailCursor.getString(emailCursor.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA));
+                        if (email != null) {
+                            friend.mail = email;
+                        }
+                    }
+                    emailCursor.close();
+                }
+                dataAccess.createFriend(friend);
+
             }
-            emailCursor.close();
-
-            dataAccess.createFriend(friend);
-
+            contactCursor.close();
         }
-        cursor.close();
     }
 
 }
