@@ -43,7 +43,7 @@ public class MapActivity extends AppCompatActivity {
             public void onMapReady(GoogleMap googleMap) {
                 friendsMap = googleMap;
                 LatLng address = getLocationFromAddress(MapActivity.this,"Stengårdsvej 8");
-                friendsMap.addMarker(new MarkerOptions().position(address).title("Marker in Sydney"));
+                friendsMap.addMarker(new MarkerOptions().position(address).title("Marker for friend"));
                 friendsMap.moveCamera(CameraUpdateFactory.newLatLng(address));
             }
         });
