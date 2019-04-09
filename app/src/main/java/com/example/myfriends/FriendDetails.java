@@ -101,6 +101,7 @@ public class FriendDetails extends AppCompatActivity {
     }
 
     public void openMapBtn(View view) {
+        startActivity(new Intent(FriendDetails.this, MapActivity.class));
     }
 
     public void openMessageBtn(View view) {
