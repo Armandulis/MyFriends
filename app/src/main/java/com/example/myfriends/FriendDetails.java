@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.MapsInitializer;
+
 import org.w3c.dom.Text;
 
 import java.io.File;
@@ -79,17 +81,6 @@ public class FriendDetails extends AppCompatActivity {
 
         TextView txWebsite = (TextView) findViewById(R.id.textview_website);
         txWebsite.setText(friend.website);
-        txWebsite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String url = friend.website;
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(url));
-                startActivity(i);
-            }
-        });
-
 
         if(!friend.website.equals("Unknown")){
             SpannableString spannableStringWebsite = new SpannableString(friend.website);
@@ -104,8 +95,8 @@ public class FriendDetails extends AppCompatActivity {
                 }
             };
             spannableStringWebsite.setSpan(clickWebsite, 0, friend.website.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE );
-         //   txWebsite.setText(spannableStringWebsite);
-          //  txWebsite.setMovementMethod(LinkMovementMethod.getInstance());
+          txWebsite.setText(spannableStringWebsite);
+          txWebsite.setMovementMethod(LinkMovementMethod.getInstance());
 
 
         }
@@ -162,7 +153,10 @@ public class FriendDetails extends AppCompatActivity {
     }
 
     public void openMapBtn(View view) {
-        startActivity(new Intent(FriendDetails.this, MapActivity.class));
+        Intent mapIntent = new Intent(FriendDetails.this, MapActivity.class);
+        mapIntent.putExtra("friend", friend);
+        mapIntent.putExtra("hasSearch", false);
+        startActivity(mapIntent);
     }
 
     public void openMessageBtn(View view) {

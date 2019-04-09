@@ -27,7 +27,7 @@ import java.util.Date;
 public class EditFriend extends AppCompatActivity {
 
     EditText textName;
-    EditText textAddress;
+    TextView textAddress;
     EditText textPhoneNumber;
     EditText textMail;
     TextView textBirthday;
@@ -37,8 +37,7 @@ public class EditFriend extends AppCompatActivity {
     FriendBE friend;
 
     String picsPath = null;
-    private final static String LOGTAG = "Camtag";
-    private final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+
     File mFile;
 
     private DatePickerDialog.OnDateSetListener mDateSetPicker;
@@ -54,6 +53,7 @@ public class EditFriend extends AppCompatActivity {
 
         Intent intent = getIntent();
         friend = (FriendBE) intent.getSerializableExtra("friend");
+        picsPath = friend.picture;
         setUpInputs();
 
         dataAccess = DataAccessFactory.getInstance(this);
@@ -98,7 +98,9 @@ public class EditFriend extends AppCompatActivity {
     }
 
     public void locationButton(View view) {
-
+        Intent mapIntent = new Intent(this, MapActivity.class);
+        mapIntent.putExtra("hasSearch", true);
+        startActivityForResult(mapIntent, Common.GET_MAP_ACTIVITY);
     }
 
 
@@ -179,14 +181,14 @@ public class EditFriend extends AppCompatActivity {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(mFile));
 
-        Log.d(LOGTAG, "file uri = " + Uri.fromFile(mFile).toString());
+        Log.d(Common.LOGTAG, "file uri = " + Uri.fromFile(mFile).toString());
 
         if (intent.resolveActivity(getPackageManager()) != null) {
-            Log.d(LOGTAG, "camera app will be started");
-            startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+            Log.d(Common.LOGTAG, "camera app will be started");
+            startActivityForResult(intent, Common.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
         }
         else
-            Log.d(LOGTAG, "camera app could NOT be started");
+            Log.d(Common.LOGTAG, "camera app could NOT be started");
 
     }
 
@@ -219,7 +221,10 @@ public class EditFriend extends AppCompatActivity {
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+        if (requestCode == Common.GET_MAP_ACTIVITY && data !=null){
+            friend.address =  data.getStringExtra("address");
+        }
+        if (requestCode == Common.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 showPictureTaken(mFile);
 

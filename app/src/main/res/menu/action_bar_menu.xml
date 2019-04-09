@@ -3,23 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.sartainstudios.contacts.ContactsView">
 
-    <group
-        android:id="@+id/group_order"
-        android:checkableBehavior="none">
-        <!-- text color group's items -->
-        <item
-            android:checkable="false"
-            android:enabled="false"
-            android:title="@string/order_by" />
-        <item
-            android:id="@+id/menu_order_name"
-            android:title="@string/order_name"
-            app:showAsAction="never" />
-        <item
-            android:id="@+id/menu_order_distance"
-            android:title="@string/order_distance"
-            app:showAsAction="never" />
-    </group>
 
     <group
         android:id="@+id/group_view"

@@ -75,16 +75,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menu_import:
                 importContacts();
                 return true;
-
-
-            case R.id.menu_order_name:
-                orderByName();
-                return true;
-
-            case R.id.menu_order_distance:
-                orderByDistance();
-                return true;
-
             case R.id.menu_view_list:
                 viewAsList();
                 return true;
@@ -97,17 +87,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void orderByDistance() {
-    }
-
-    private void orderByName() {
-      Collections.sort(listFriends, new Comparator<FriendBE>() {
-            public int compare(FriendBE o1, FriendBE o2) {
-                return o1.name.compareTo(o2.name);
-            }
-        });
-    }
-
     private void viewAsList() {
         listFriends = dataAccess.getFriends();
         listViewFriends.setAdapter(null);
@@ -116,7 +95,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void viewAsMap() {
-        //Implement Map!
+        Intent mapIntent = new Intent(this, MapActivity.class);
+        mapIntent.putExtra("listFriends", listFriends);
+        mapIntent.putExtra("hasSearch", false);
+        startActivity(mapIntent);
     }
 
     private void importContacts() {
